@@ -7,7 +7,8 @@ the agent subscribes to. If the events are not consumed, `launchd` will think th
 failed and will restart it. And restart it. Again. Every 10 seconds (by default: see `ThrottleInterval`).
 
 There is no native way to call `xpc_set_event_stream_handler(3)` from a shell script, which makes these
-agents more difficult to write.
+agents more difficult to write. (Which is probably a good thing: `LaunchEvent` handlers need to be
+performant. Use this repo at your own peril :))
 
 `xpc_set_event_stream_handler` provides a way. Each time it is spawned, it will consume one event
 from the given event stream then runs the command you specify. See Arguments below.

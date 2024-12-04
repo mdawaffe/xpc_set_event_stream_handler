@@ -4,7 +4,7 @@ Built for use by `launchd` plists using the `LaunchEvents` key.
 
 Agents that use `LaunchEvents` must use `xpc_set_event_stream_handler(3)` to consume the events
 the agent subscribes to. If the events are not consumed, `launchd` will think that the agent has
-faild and will restart it. And restart it. Again. Every 10 seconds (by default: see `ThrottleInterval`).
+failed and will restart it. And restart it. Again. Every 10 seconds (by default: see `ThrottleInterval`).
 
 There is no native way to call `xpc_set_event_stream_handler(3)` from a shell script, which makes these
 agents more difficult to write.
@@ -100,6 +100,7 @@ ad-hoc lists here and there, but finding information about a useful-to-you event
 You can watch all `notifyd` events by doing:
 1. Disable SIP on your machine. THIS IS NOT A GOOD IDEA :) Be sure to reenable SIP when you are done.
 2. `sudo launchctl debug system/com.apple.notifyd -- /usr/sbin/notifyd -d`
+
    That command will tell `launchd` to use `/usr/sbin/notifyd -d` instead of `/usr/sbin/notifyd` the next time
    it launches the `notifyd` daemon. The `-d` puts `notifyd` in debug mode.
 3. `tail -F /var/log/notifyd.log`
